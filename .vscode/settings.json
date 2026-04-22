@@ -1,0 +1,6 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=c:\\Users\\ASUS\\Documents\\PlatformIO\\Projects\\DUMMY_PROJECT_EMQX_GRAFANA_INFLUXdb\\.pio\\build\\seeed_xiao_esp32s3",
+        "--query-driver=C:\\Users\\ASUS\\.platformio\\packages\\toolchain-*\\bin\\*,C:\\Users\\ASUS\\.platformio\\packages\\tool-*\\bin\\*"
+    ]
+}

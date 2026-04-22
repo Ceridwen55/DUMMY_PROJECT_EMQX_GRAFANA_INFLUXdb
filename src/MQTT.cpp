@@ -19,21 +19,21 @@ static char _topic[64];       // define topic buffer
 static bool reconnect_mqtt() { // function to connect to MQTT Broker
 
   if (mqttClient.connected()) { // check if already connected to broker
-    Serial.printf("[MQTT] Connecting to %s...\n",
-                  _broker); // print broker address
-
-    bool connected =
-        mqttClient.connect(_clientId, _user, _pass); // connect to broker
-
-    if (connected) {                       // check if connected to broker
-      Serial.println("[MQTT] Connected!"); // print connected to broker
-    } else {
-      Serial.printf("[MQTT] Failed, rc=%d. Try again later.\n",
-                    mqttClient.state()); // print connection failed
-    }
-
-    return connected; // return connected
+    return true;
   }
+
+  Serial.printf("[MQTT] Connecting to %s...\n", _broker); // print broker address
+
+  bool connected = mqttClient.connect(_clientId, _user, _pass); // connect
+
+  if (connected) { // check if connected to broker
+    Serial.println("[MQTT] Connected!"); // print connected to broker
+  } else {
+    Serial.printf("[MQTT] Failed, rc=%d. Try again later.\n",
+                  mqttClient.state()); // print connection failed
+  }
+
+  return connected; // return connected
 }
 
 // INITIATE MQTT
@@ -62,7 +62,7 @@ bool initMQTT(
 
 bool publishData(float temperature,
                  float humidity) { // function to publish data to MQTT Broker
-  if (!reconnectMQTT())
+  if (!reconnect_mqtt())
     return false; // check if connected to broker
 
   // Format payload JSON
